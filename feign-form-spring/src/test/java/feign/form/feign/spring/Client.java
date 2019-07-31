@@ -134,6 +134,7 @@ public interface Client {
       annotatedArgumentResolvers.add(new RequestParamParameterProcessor());
       annotatedArgumentResolvers.add(new RequestHeaderParameterProcessor());
       annotatedArgumentResolvers.add(new QueryMapParameterProcessor());
+      annotatedArgumentResolvers.add(new RequestPartParameterProcessor());
 
       return new SpringMvcContract(annotatedArgumentResolvers);
     }
