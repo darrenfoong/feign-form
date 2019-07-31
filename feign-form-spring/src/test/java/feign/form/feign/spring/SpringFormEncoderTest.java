@@ -114,6 +114,7 @@ public class SpringFormEncoderTest {
     assertEquals(200, response.status());
   }
 
+  /*
   @Test
   public void upload6ArrayTest () throws Exception {
     val file1 = new MockMultipartFile("popa1", "popa1", null, "Hello".getBytes(UTF_8));
@@ -133,4 +134,5 @@ public class SpringFormEncoderTest {
     val response = client.upload6Collection(list);
     Assert.assertEquals("Hello world", response);
   }
+  */
 }
