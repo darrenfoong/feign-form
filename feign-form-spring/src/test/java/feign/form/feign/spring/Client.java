@@ -23,6 +23,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.util.List;
 import java.util.Map;
 
+import feign.Contract;
 import feign.Logger;
 import feign.Response;
 import feign.codec.Encoder;
@@ -32,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
+import org.springframework.cloud.openfeign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -116,6 +118,11 @@ public interface Client {
     @Bean
     public Encoder feignEncoder () {
       return new SpringFormEncoder(new SpringEncoder(messageConverters));
+    }
+
+    @Bean
+    public Contract customSpringMvcContract() {
+      return new SpringMvcContract();
     }
 
     @Bean
