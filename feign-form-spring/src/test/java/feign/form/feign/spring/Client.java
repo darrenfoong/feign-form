@@ -108,7 +108,7 @@ public interface Client {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload6Multiple (@RequestPart("popa1") MultipartFile file1, @RequestPart("popa2") MultipartFile file2);
+  String upload6Multiple (@RequestPart MultipartFile file1, @RequestPart MultipartFile file2);
 
   @RequestMapping(
       path = "/multipart/upload6",
