@@ -48,6 +48,9 @@ public class SpringFormRequestPartEncoder extends SpringFormEncoder {
         } else if (entry.getValue() instanceof MultipartFile) {
           val file = (MultipartFile) entry.getValue();
           data.put(file.getName(), file);
+        } else {
+          // TODO Use proper serializer
+          data.put(entry.getKey(), entry.getValue().toString());
         }
       }
 
