@@ -66,7 +66,7 @@ public interface Client {
       consumes = MULTIPART_FORM_DATA_VALUE
   )
   String upload1 (@PathVariable("folder") String folder,
-                  @RequestPart("file") MultipartFile file,
+                  @RequestPart MultipartFile file,
                   @RequestParam(value = "message", required = false) String message);
 
   @RequestMapping(
@@ -115,14 +115,14 @@ public interface Client {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload6Array (@RequestPart("files") MultipartFile[] files);
+  String upload6Array (@RequestPart MultipartFile[] files);
 
   @RequestMapping(
       path = "/multipart/upload6",
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload6Collection (@RequestPart("files") List<MultipartFile> files);
+  String upload6Collection (@RequestPart List<MultipartFile> files);
 
   class ClientConfiguration {
 
