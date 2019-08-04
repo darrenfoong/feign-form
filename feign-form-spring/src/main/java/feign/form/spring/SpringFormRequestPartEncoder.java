@@ -1,5 +1,7 @@
 package feign.form.spring;
 
+import static feign.form.ContentType.MULTIPART;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
+import feign.form.MultipartFormContentProcessor;
 import lombok.val;
 
 public class SpringFormRequestPartEncoder extends SpringFormEncoder {
@@ -19,6 +22,9 @@ public class SpringFormRequestPartEncoder extends SpringFormEncoder {
 
   public SpringFormRequestPartEncoder (Encoder delegate) {
     super(delegate);
+
+    val processor = (MultipartFormContentProcessor) getContentProcessor(MULTIPART);
+    processor.addFirstWriter(new PojoJsonWriter());
   }
 
   @Override
@@ -50,7 +56,7 @@ public class SpringFormRequestPartEncoder extends SpringFormEncoder {
           data.put(file.getName(), file);
         } else {
           // TODO Use proper serializer
-          data.put(entry.getKey(), entry.getValue().toString());
+          data.put(entry.getKey(), entry.getValue());
         }
       }
 

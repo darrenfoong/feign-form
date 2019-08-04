@@ -129,7 +129,7 @@ public interface Client {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload7 (@RequestPart("files") List<MultipartFile> files, @RequestPart("pojo") Pojo pojo);
+  String upload7 (@RequestPart("pojo") Pojo pojo);
 
   class ClientConfiguration {
 

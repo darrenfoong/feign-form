@@ -152,7 +152,7 @@ public class SpringFormEncoderTest {
 
     Pojo pojo = new Pojo("Hello", 1);
 
-    val response = client.upload7(list, pojo);
+    val response = client.upload7(pojo);
     Assert.assertEquals("Hello world", response);
   }
 }
