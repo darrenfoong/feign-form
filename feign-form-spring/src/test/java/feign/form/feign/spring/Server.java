@@ -122,8 +122,8 @@ public class Server {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  public ResponseEntity<String> upload6 (@RequestPart("files") List<MultipartFile> files)
-   throws Exception {
+  public ResponseEntity<String> upload6 (@RequestPart("files") List<MultipartFile> files
+  ) throws Exception {
     MultipartFile popa1 = files.get(0);
     MultipartFile popa2 = files.get(1);
 
