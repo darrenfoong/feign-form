@@ -155,10 +155,10 @@ public class Server {
   )
   public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo, @RequestPart("files") List<MultipartFile> files
   ) throws Exception {
-    val result = pojo.getField1() + pojo.getField2() + pojo.getField3();
-    result += new String(files.get(0).getBytes()) + new String(files.get(1).getBytes());
+    val result1 = pojo.getField1() + pojo.getField2() + pojo.getField3();
+    val result2 = new String(files.get(0).getBytes()) + new String(files.get(1).getBytes());
 
-    return ResponseEntity.ok(result);
+    return ResponseEntity.ok(result1 + result2);
   }
 
   @RequestMapping(
