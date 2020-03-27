@@ -115,15 +115,6 @@ public class SpringFormEncoderTest {
   }
 
   @Test
-  public void upload6MultipleTest () throws Exception {
-    val file1 = new MockMultipartFile("popa1", "popa1", null, "Hello".getBytes(UTF_8));
-    val file2 = new MockMultipartFile("popa2", "popa2", null, " world".getBytes(UTF_8));
-
-    val response = client.upload6Multiple(file1, file2);
-    Assert.assertEquals("Hello world", response);
-  }
-
-  @Test
   public void upload6ArrayTest () throws Exception {
     val file1 = new MockMultipartFile("popa1", "popa1", null, "Hello".getBytes(UTF_8));
     val file2 = new MockMultipartFile("popa2", "popa2", null, " world".getBytes(UTF_8));
