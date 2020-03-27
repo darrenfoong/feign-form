@@ -20,27 +20,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import feign.Contract;
 import feign.Logger;
 import feign.Response;
 import feign.codec.Encoder;
-import feign.form.spring.SpringFormRequestPartEncoder;
+import feign.form.spring.SpringFormEncoder;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.cloud.openfeign.AnnotatedParameterProcessor;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.annotation.PathVariableParameterProcessor;
-import org.springframework.cloud.openfeign.annotation.QueryMapParameterProcessor;
-import org.springframework.cloud.openfeign.annotation.RequestHeaderParameterProcessor;
-import org.springframework.cloud.openfeign.annotation.RequestParamParameterProcessor;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
-import org.springframework.cloud.openfeign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -145,19 +137,7 @@ public interface Client {
 
     @Bean
     public Encoder feignEncoder () {
-      return new SpringFormRequestPartEncoder(new SpringEncoder(messageConverters));
-    }
-
-    @Bean
-    public Contract customSpringMvcContract() {
-      List<AnnotatedParameterProcessor> annotatedArgumentResolvers = new ArrayList<>();
-
-      annotatedArgumentResolvers.add(new PathVariableParameterProcessor());
-      annotatedArgumentResolvers.add(new RequestParamParameterProcessor());
-      annotatedArgumentResolvers.add(new RequestHeaderParameterProcessor());
-      annotatedArgumentResolvers.add(new QueryMapParameterProcessor());
-
-      return new SpringMvcContract(annotatedArgumentResolvers);
+      return new SpringFormEncoder(new SpringEncoder(messageConverters));
     }
 
     @Bean
