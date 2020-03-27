@@ -147,6 +147,15 @@ public class Server {
   }
 
   @RequestMapping(
+          path = "/multipart/upload8",
+          method = POST,
+          consumes = MULTIPART_FORM_DATA_VALUE
+  )
+  public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo, @RequestPart("files") List<MultipartFile> files) throws Exception {
+   return ResponseEntity.ok(pojo.getField1() + pojo.getField2() + pojo.getField3() + new String(files.get(0).getBytes()) + new String(files.get(1).getBytes()));
+  }
+
+  @RequestMapping(
       path = "/multipart/download/{fileId}",
       method = GET,
       produces = MULTIPART_FORM_DATA_VALUE
