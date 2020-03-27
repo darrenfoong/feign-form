@@ -17,7 +17,7 @@ import java.io.IOException;
 public abstract class PojoSerializationWriter extends AbstractWriter {
   @Override
   public boolean isApplicable(Object object) {
-    return isUserPojo(object);
+    return !(object instanceof MultipartFile) && !(object instanceof MultipartFile[]) && isUserPojo(object);
   }
 
   @Override

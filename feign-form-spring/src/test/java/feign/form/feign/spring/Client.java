@@ -30,7 +30,6 @@ import feign.Response;
 import feign.codec.Encoder;
 import feign.form.spring.PojoSerializationWriter;
 import feign.form.spring.SpringFormEncoder;
-import feign.form.spring.SpringPojoFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -133,7 +132,7 @@ public interface Client {
             @Override
               protected MediaType getContentType() {
                 return MediaType.APPLICATION_JSON;
-                }
+              }
 
             @Override
               protected String serialize(Object object) throws IOException {
@@ -141,7 +140,7 @@ public interface Client {
               }
             };
 
-      return new SpringPojoFormEncoder(pojoSerializationWriter, new SpringFormEncoder(new SpringEncoder(messageConverters)));
+       return new SpringFormEncoder(pojoSerializationWriter, new SpringEncoder(messageConverters));
     }
 
     @Bean
