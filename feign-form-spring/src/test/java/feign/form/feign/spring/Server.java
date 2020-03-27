@@ -139,23 +139,6 @@ public class Server {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  public ResponseEntity<String> upload7 (@RequestPart("popa1") MultipartFile popa1,
-                                         @RequestPart("popa2") MultipartFile popa2
-  ) throws Exception {
-    HttpStatus status = I_AM_A_TEAPOT;
-    String result = "";
-    if (popa1 != null && popa2 != null) {
-      status = OK;
-      result = new String(popa1.getBytes()) + new String(popa2.getBytes());
-    }
-    return ResponseEntity.status(status).body(result);
-  }
-
-  @RequestMapping(
-      path = "/multipart/upload8",
-      method = POST,
-      consumes = MULTIPART_FORM_DATA_VALUE
-  )
   public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo
   ) throws Exception {
     return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("");

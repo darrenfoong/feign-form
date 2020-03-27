@@ -135,21 +135,10 @@ public class SpringFormEncoderTest {
   }
 
   @Test
-  public void upload7CollectionTest () throws Exception {
-    List<MultipartFile> list = asList(
-        (MultipartFile) new MockMultipartFile("popa1", "popa1", null, "Hello".getBytes(UTF_8)),
-        (MultipartFile) new MockMultipartFile("popa2", "popa2", null, " world".getBytes(UTF_8))
-    );
-
-    val response = client.upload7Collection(list);
-    Assert.assertEquals("Hello world", response);
-  }
-
-  @Test
-  public void upload8Test () throws Exception {
+  public void upload7Test () throws Exception {
     Pojo pojo = new Pojo("Hello", 1);
 
-    val response = client.upload8(pojo);
+    val response = client.upload7(pojo);
     Assert.assertEquals("Hello world", response);
   }
 }
