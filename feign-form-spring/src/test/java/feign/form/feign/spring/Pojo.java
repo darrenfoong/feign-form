@@ -14,5 +14,7 @@ import lombok.experimental.FieldDefaults;
 public class Pojo {
   String field1;
 
-  int field2;
+  String field2;
+
+  int field3;
 }

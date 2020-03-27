@@ -136,9 +136,9 @@ public class SpringFormEncoderTest {
 
   @Test
   public void upload7Test () throws Exception {
-    Pojo pojo = new Pojo("Hello", 1);
+    Pojo pojo = new Pojo("Hello", " world", 1);
 
     val response = client.upload7(pojo);
-    Assert.assertEquals("Hello world", response);
+    Assert.assertEquals("{}", response);
   }
 }

@@ -122,7 +122,7 @@ public interface Client {
 
     @Bean
     public Encoder feignEncoder () {
-      return new SpringFormEncoder(new SpringEncoder(messageConverters));
+      return new SpringJsonFormEncoder(new SpringFormEncoder(new SpringEncoder(messageConverters)));
     }
 
     @Bean
