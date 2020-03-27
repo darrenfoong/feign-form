@@ -1,8 +1,9 @@
-package feign.form.feign.spring;
+package feign.form.spring;
 
 import static feign.form.ContentProcessor.CRLF;
 import static feign.form.util.PojoUtil.isUserPojo;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
 
 import feign.codec.EncodeException;
@@ -13,7 +14,7 @@ import lombok.val;
 
 import java.io.IOException;
 
-public abstract class PojoJsonWriter extends AbstractWriter {
+public abstract class PojoSerializationWriter extends AbstractWriter {
   @Override
   public boolean isApplicable(Object object) {
     return isUserPojo(object);
@@ -24,9 +25,11 @@ public abstract class PojoJsonWriter extends AbstractWriter {
     try {
       val string = new StringBuilder()
           .append("Content-Disposition: form-data; name=\"").append(key).append('"').append(CRLF)
-          .append("Content-Type: text/plain; charset=").append(output.getCharset().name()).append(CRLF)
+          .append("Content-Type: ").append(getContentType())
+          .append("; charset=").append(output.getCharset().name())
           .append(CRLF)
-          .append(convertToJsonString(object))
+          .append(CRLF)
+          .append(serialize(object))
           .toString();
 
       output.write(string);
@@ -35,5 +38,7 @@ public abstract class PojoJsonWriter extends AbstractWriter {
     }
   }
 
-  protected abstract String convertToJsonString(Object object) throws IOException;
+  protected abstract MediaType getContentType();
+
+  protected abstract String serialize(Object object) throws IOException;
 }

@@ -141,9 +141,9 @@ public class Server {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  public ResponseEntity<String> upload7 (@RequestPart("pojo") String pojo
+  public ResponseEntity<String> upload7 (@RequestPart("pojo") Pojo pojo
   ) throws Exception {
-    return ResponseEntity.ok(pojo);
+    return ResponseEntity.ok(pojo.getField1() + pojo.getField2() + pojo.getField3());
   }
 
   @RequestMapping(

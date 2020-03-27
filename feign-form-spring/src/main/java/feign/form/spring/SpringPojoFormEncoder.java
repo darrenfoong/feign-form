@@ -14,48 +14,29 @@
  * limitations under the License.
  */
 
-package feign.form.feign.spring;
+package feign.form.spring;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
 import feign.form.FormEncoder;
 import feign.form.MultipartFormContentProcessor;
+import feign.form.spring.PojoSerializationWriter;
 import lombok.val;
+import org.springframework.http.MediaType;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
 import static feign.form.ContentType.MULTIPART;
 
-public class SpringJsonFormEncoder extends FormEncoder {
+public class SpringPojoFormEncoder extends FormEncoder {
 
-  /**
-   * Constructor with the default Feign's encoder as a delegate.
-   */
-  public SpringJsonFormEncoder() {
-    this(new Default());
-  }
-
-  /**
-   * Constructor with specified delegate encoder.
-   *
-   * @param delegate  delegate encoder, if this encoder couldn't encode object.
-   */
-  public SpringJsonFormEncoder(Encoder delegate) {
+  public SpringPojoFormEncoder(PojoSerializationWriter pojoSerializationWriter, Encoder delegate) {
     super(delegate);
 
     val processor = (MultipartFormContentProcessor) getContentProcessor(MULTIPART);
-    processor.addFirstWriter(new PojoJsonWriter() {
-      private ObjectMapper objectMapper = new ObjectMapper();
-
-      @Override
-      protected String convertToJsonString(Object object) throws IOException {
-        return objectMapper.writeValueAsString(object);
-      }
-    });
+    processor.addFirstWriter(pojoSerializationWriter);
   }
 
   @Override

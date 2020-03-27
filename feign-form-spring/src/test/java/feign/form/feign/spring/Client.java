@@ -20,19 +20,24 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Logger;
 import feign.Response;
 import feign.codec.Encoder;
+import feign.form.spring.PojoSerializationWriter;
 import feign.form.spring.SpringFormEncoder;
+import feign.form.spring.SpringPojoFormEncoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,7 +127,21 @@ public interface Client {
 
     @Bean
     public Encoder feignEncoder () {
-      return new SpringJsonFormEncoder(new SpringFormEncoder(new SpringEncoder(messageConverters)));
+      PojoSerializationWriter pojoSerializationWriter = new PojoSerializationWriter() {
+            private ObjectMapper objectMapper = new ObjectMapper();
+
+            @Override
+              protected MediaType getContentType() {
+                return MediaType.APPLICATION_JSON;
+                }
+
+            @Override
+              protected String serialize(Object object) throws IOException {
+                return objectMapper.writeValueAsString(object);
+              }
+            };
+
+      return new SpringPojoFormEncoder(pojoSerializationWriter, new SpringFormEncoder(new SpringEncoder(messageConverters)));
     }
 
     @Bean
