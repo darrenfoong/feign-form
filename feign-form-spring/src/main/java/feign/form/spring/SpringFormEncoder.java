@@ -61,6 +61,7 @@ public class SpringFormEncoder extends FormEncoder {
 
   @Override
   public void encode (Object object, Type bodyType, RequestTemplate template) throws EncodeException {
+    // TODO Handle object as map
     if (bodyType.equals(MultipartFile[].class)) {
       val files = (MultipartFile[]) object;
       val data = new HashMap<String, Object>(files.length, 1.F);

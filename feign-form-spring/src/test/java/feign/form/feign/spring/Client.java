@@ -125,11 +125,18 @@ public interface Client {
   String upload6Collection (@RequestPart List<MultipartFile> files);
 
   @RequestMapping(
-      path = "/multipart/upload7",
+          path = "/multipart/upload7",
+          method = POST,
+          consumes = MULTIPART_FORM_DATA_VALUE
+  )
+  String upload7Collection (@RequestPart List<MultipartFile> files);
+
+  @RequestMapping(
+      path = "/multipart/upload8",
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload7 (@RequestPart("pojo") Pojo pojo);
+  String upload8 (@RequestPart("pojo") Pojo pojo);
 
   class ClientConfiguration {
 
