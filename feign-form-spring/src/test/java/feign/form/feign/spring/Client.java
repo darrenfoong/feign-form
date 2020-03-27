@@ -106,13 +106,6 @@ public interface Client {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  String upload6Array (@RequestPart("files") MultipartFile[] files);
-
-  @RequestMapping(
-      path = "/multipart/upload6",
-      method = POST,
-      consumes = MULTIPART_FORM_DATA_VALUE
-  )
   String upload6Collection (@RequestPart("files") List<MultipartFile> files);
 
   @RequestMapping(
