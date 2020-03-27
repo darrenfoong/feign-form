@@ -27,7 +27,6 @@ import feign.Logger;
 import feign.Response;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
-
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -117,9 +116,9 @@ public interface Client {
   String upload6Collection (@RequestPart List<MultipartFile> files);
 
   @RequestMapping(
-          path = "/multipart/upload7",
-          method = POST,
-          consumes = MULTIPART_FORM_DATA_VALUE
+      path = "/multipart/upload7",
+      method = POST,
+      consumes = MULTIPART_FORM_DATA_VALUE
   )
   String upload7Collection (@RequestPart List<MultipartFile> files);
 

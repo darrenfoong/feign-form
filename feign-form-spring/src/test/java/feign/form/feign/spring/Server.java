@@ -135,9 +135,9 @@ public class Server {
   }
 
   @RequestMapping(
-          path = "/multipart/upload7",
-          method = POST,
-          consumes = MULTIPART_FORM_DATA_VALUE
+      path = "/multipart/upload7",
+      method = POST,
+      consumes = MULTIPART_FORM_DATA_VALUE
   )
   public ResponseEntity<String> upload7 (@RequestPart("popa1") MultipartFile popa1,
                                          @RequestPart("popa2") MultipartFile popa2
