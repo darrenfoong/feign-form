@@ -141,7 +141,7 @@ public class Server {
       method = POST,
       consumes = MULTIPART_FORM_DATA_VALUE
   )
-  public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo
+  public ResponseEntity<String> upload7 (@RequestPart("pojo") Pojo pojo
   ) throws Exception {
     return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("");
   }
