@@ -134,18 +134,18 @@ public interface Client {
     @Bean
     public Encoder feignEncoder () {
       PojoSerializationWriter pojoSerializationWriter = new PojoSerializationWriter() {
-            private ObjectMapper objectMapper = new ObjectMapper();
+        private ObjectMapper objectMapper = new ObjectMapper();
 
-            @Override
-              protected MediaType getContentType() {
-                return MediaType.APPLICATION_JSON;
-              }
+        @Override
+        protected MediaType getContentType() {
+          return MediaType.APPLICATION_JSON;
+        }
 
-            @Override
-              protected String serialize(Object object) throws IOException {
-                return objectMapper.writeValueAsString(object);
-              }
-            };
+        @Override
+        protected String serialize(Object object) throws IOException {
+          return objectMapper.writeValueAsString(object);
+        }
+      };
 
        return new SpringFormEncoder(pojoSerializationWriter, new SpringEncoder(messageConverters));
     }

@@ -147,8 +147,8 @@ public class SpringFormEncoderTest {
     Pojo pojo = new Pojo("Hello", " world", 1);
 
     List<MultipartFile> list = asList(
-            (MultipartFile) new MockMultipartFile("files", "popa1", null, "Hello".getBytes(UTF_8)),
-            (MultipartFile) new MockMultipartFile("files", "popa2", null, " world".getBytes(UTF_8))
+        (MultipartFile) new MockMultipartFile("files", "popa1", null, "Hello".getBytes(UTF_8)),
+        (MultipartFile) new MockMultipartFile("files", "popa2", null, " world".getBytes(UTF_8))
     );
 
     val response = client.upload8(pojo, list);

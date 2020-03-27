@@ -143,7 +143,9 @@ public class Server {
   )
   public ResponseEntity<String> upload7 (@RequestPart("pojo") Pojo pojo
   ) throws Exception {
-    return ResponseEntity.ok(pojo.getField1() + pojo.getField2() + pojo.getField3());
+    val result = pojo.getField1() + pojo.getField2() + pojo.getField3();
+
+    return ResponseEntity.ok(result);
   }
 
   @RequestMapping(
@@ -151,8 +153,12 @@ public class Server {
           method = POST,
           consumes = MULTIPART_FORM_DATA_VALUE
   )
-  public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo, @RequestPart("files") List<MultipartFile> files) throws Exception {
-   return ResponseEntity.ok(pojo.getField1() + pojo.getField2() + pojo.getField3() + new String(files.get(0).getBytes()) + new String(files.get(1).getBytes()));
+  public ResponseEntity<String> upload8 (@RequestPart("pojo") Pojo pojo, @RequestPart("files") List<MultipartFile> files
+  ) throws Exception {
+    val result = pojo.getField1() + pojo.getField2() + pojo.getField3();
+    result += new String(files.get(0).getBytes()) + new String(files.get(1).getBytes());
+
+    return ResponseEntity.ok(result);
   }
 
   @RequestMapping(

@@ -24,7 +24,8 @@ public abstract class PojoSerializationWriter extends AbstractWriter {
   public void write (Output output, String key, Object object) throws EncodeException {
     try {
       val string = new StringBuilder()
-          .append("Content-Disposition: form-data; name=\"").append(key).append('"').append(CRLF)
+          .append("Content-Disposition: form-data; name=\"").append(key).append('"')
+          .append(CRLF)
           .append("Content-Type: ").append(getContentType())
           .append("; charset=").append(output.getCharset().name())
           .append(CRLF)
